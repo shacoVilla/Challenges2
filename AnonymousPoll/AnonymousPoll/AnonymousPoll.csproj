@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Core\Input\InputData.cs" />
     <Compile Include="Core\Output\ResultCase.cs" />
-    <Compile Include="FileManager.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Model\InputCase.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Program.cs" />

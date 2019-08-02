@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using AnonymousPoll.Core.Model;
 
-    public static class FileManager
+    public static class Helper
     {
         public static List<Student> GetStudentsFromTextFile()
         {
