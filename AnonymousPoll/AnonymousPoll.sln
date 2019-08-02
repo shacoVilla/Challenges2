@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousPoll", "AnonymousPoll\AnonymousPoll.csproj", "{6CD0EB26-4BE0-4A14-8AAF-D65AE4EE6271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousPollTest", "AnonymousPollTest\AnonymousPollTest.csproj", "{0AE3D433-27C5-4D92-97A7-3AF7D3FA3560}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CD0EB26-4BE0-4A14-8AAF-D65AE4EE6271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD0EB26-4BE0-4A14-8AAF-D65AE4EE6271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD0EB26-4BE0-4A14-8AAF-D65AE4EE6271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD0EB26-4BE0-4A14-8AAF-D65AE4EE6271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE3D433-27C5-4D92-97A7-3AF7D3FA3560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE3D433-27C5-4D92-97A7-3AF7D3FA3560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE3D433-27C5-4D92-97A7-3AF7D3FA3560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE3D433-27C5-4D92-97A7-3AF7D3FA3560}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C3A06B6-3D25-45C7-A908-E33FF9CFEDC2}
+	EndGlobalSection
+EndGlobal
