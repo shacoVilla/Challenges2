@@ -51,17 +51,42 @@ namespace AnonymousPollTest
         }
 
         [Fact]
-        public void GetDistinctStudenCases()
+        public void GetDistinctStudenCases_ByStudy()
+        {
+
+        }
+
+        [Fact]
+        public void GetDistinctStudenCases_ByGender()
         {
             List<InputCase> cases = new List<InputCase>();
 
             cases.Add(new InputCase("F", "18", "Math", "1980"));
 
-            cases.Add(new InputCase("F", "18", "Math", "1981"));
+            cases.Add(new InputCase("F", "18", "Math", "1980"));
 
-            cases.Add(new InputCase("F", "18", "Math", "1982"));
+            cases.Add(new InputCase("F", "18", "Math", "1980"));
 
-            cases.Add(new InputCase("F", "18", "Math", "1983"));
+            cases.Add(new InputCase("F", "18", "Math", "1980"));
+
+            cases.Add(new InputCase("M", "18", "Math", "1980"));
+
+            cases.Add(new InputCase("M", "18", "Math", "1980"));
+
+            var result = cases.Select(m => new { m.Age, m.Gender, m.Study, m.AcademicYear }).Distinct().ToList();
+
+            var casesNr = result.Count();
+
+            Assert.True(casesNr == 2);
+        }
+
+       [Fact]
+        public void GetDistinctStudenCases_ByAcademicYear()
+        {
+
+            List<InputCase> cases = new List<InputCase>();
+
+            cases.Add(new InputCase("F", "18", "Math", "1980"));
 
             cases.Add(new InputCase("F", "18", "Math", "1984"));
 
@@ -73,25 +98,11 @@ namespace AnonymousPollTest
 
             cases.Add(new InputCase("F", "18", "Sport", "1987"));
 
-            //cases.Add(new InputCase("F", "18", "Math", "1980"));
-
-            //cases.Add(new InputCase("F", "20", "Math", "1980"));
-
-            //cases.Add(new InputCase("F", "18", "Math", "1986"));
-
-            //cases.Add(new InputCase("F", "20", "Math", "1986"));
-
-            //cases.Add(new InputCase("F", "20", "Math", "1986"));
-
-            //cases.Add(new InputCase("F", "30", "Math", "1986"));
-
-            //cases.Add(new InputCase("F", "30", "Math", "1980"));
-
-            //cases.Add(new InputCase("F", "30", "Math", "1980"));
-
             var result = cases.Select(m => new { m.Age, m.Gender, m.Study, m.AcademicYear }).Distinct().ToList();
 
             var casesNr = result.Count();
+
+            Assert.True(casesNr == 5);
 
         }
 
@@ -197,5 +208,6 @@ namespace AnonymousPollTest
 
 
         }
+
     }
 }
