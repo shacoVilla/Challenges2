@@ -22,7 +22,6 @@ namespace AnonymousPollTest
             while ((line = file.ReadLine()) != null)
             {
                 string[] words = line.Split(',');
-                //listStudents.Add(new Person(words[0], words[1], words[2]));
             }
 
             // Assert
@@ -49,6 +48,80 @@ namespace AnonymousPollTest
 
             // Assert
             Assert.True(studentsList.Count > 0);
+        }
+
+        [Fact]
+        public void GetDistinctStudenCases()
+        {
+            List<InputCase> cases = new List<InputCase>();
+
+            cases.Add(new InputCase("F", "18", "Math", "1980"));
+
+            cases.Add(new InputCase("F", "18", "Math", "1981"));
+
+            cases.Add(new InputCase("F", "18", "Math", "1982"));
+
+            cases.Add(new InputCase("F", "18", "Math", "1983"));
+
+            cases.Add(new InputCase("F", "18", "Math", "1984"));
+
+            cases.Add(new InputCase("F", "18", "Math", "1985"));
+
+            cases.Add(new InputCase("F", "18", "Sport", "1986"));
+
+            cases.Add(new InputCase("F", "18", "Sport", "1987"));
+
+            cases.Add(new InputCase("F", "18", "Sport", "1987"));
+
+            //cases.Add(new InputCase("F", "18", "Math", "1980"));
+
+            //cases.Add(new InputCase("F", "20", "Math", "1980"));
+
+            //cases.Add(new InputCase("F", "18", "Math", "1986"));
+
+            //cases.Add(new InputCase("F", "20", "Math", "1986"));
+
+            //cases.Add(new InputCase("F", "20", "Math", "1986"));
+
+            //cases.Add(new InputCase("F", "30", "Math", "1986"));
+
+            //cases.Add(new InputCase("F", "30", "Math", "1980"));
+
+            //cases.Add(new InputCase("F", "30", "Math", "1980"));
+
+            var result = cases.Select(m => new { m.Age, m.Gender, m.Study, m.AcademicYear }).Distinct().ToList();
+
+            var casesNr = result.Count();
+
+        }
+
+        [Fact]
+        public void GetStudentsCases_Success()
+        {
+            // Arrange
+            List<Student> studentsList = new List<Student>();
+            List<InputCase> cases = new List<InputCase>();
+            var inputData = new InputData();
+            List<ResultCase> listResultCases = new List<ResultCase>();
+            string line;
+            StreamReader file = new StreamReader(@"../../Data/Input/students.txt");
+
+            // Act
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] words = line.Split(',');
+                studentsList.Add(new Student(words[0], words[1], words[2], words[3], words[4]));
+                cases.Add(new InputCase(words[1], words[2], words[3], words[4]));
+            }
+
+            Assert.True(cases.Count() > 0);
+
+            //var distinctCases = cases
+            //            .Select(m => new { m.Age, m.Gender, m.Study, m.AcademicYear });
+
+            //// Assert
+            //var isUnique = distinctCases.Distinct().Count() == cases.Count();
+            //Assert.True(isUnique);
         }
 
         [Fact]
