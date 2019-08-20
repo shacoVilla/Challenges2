@@ -8,14 +8,19 @@ namespace AnonymousPoll.Core.Output
 
     public class ResultCase
     {
+        public int CaseNumber { get; set; }
+
+        public List<string> Names { get; set; }
+
         public ResultCase(int nr)
         {
             this.CaseNumber = nr;
             this.Names = new List<string>();
         }
 
-        public int CaseNumber { get; set; }
-
-        public List<string> Names { get; set; }
+        public override string ToString()
+        {
+            return $"Case #{this.CaseNumber}: {string.Join(",", this.Names)}";
+        }
     }
 }
