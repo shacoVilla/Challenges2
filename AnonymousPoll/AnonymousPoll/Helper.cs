@@ -1,9 +1,9 @@
 ﻿namespace AnonymousPoll
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using AnonymousPoll.Core.Input;
     using AnonymousPoll.Model;
 
     public static class Helper
