@@ -1,27 +1,51 @@
 ﻿namespace AnonymousPoll
 {
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
-    using AnonymousPoll.Core.Model;
+    using System.Linq;
+    using AnonymousPoll.Model;
 
     public static class Helper
     {
-        public static List<Student> GetStudentsFromTextFile()
+        public static List<Student> GetStudentsFromTextFile(string filePath)
         {
             string line;
-            List<Student> listStudents = new List<Student>();
+            List<Student> studentsList = new List<Student>();
 
-            // Read the file and display it line by line.
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(@"Data/Input/students.txt");
-            while ((line = file.ReadLine()) != null)
+            try
             {
-                string[] words = line.Split(',');
-                //listStudents.Add(new Person(words[0], words[1], words[2]));
+                // Read the file and display it line by line.
+                System.IO.StreamReader file =
+                    new System.IO.StreamReader(filePath);
+                while ((line = file.ReadLine()) != null)
+                {
+                    string[] words = line.Split(',');
+                    studentsList.Add(new Student(words[0], words[1], words[2], words[3], words[4]));
+                }
+
+                file.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error found:" + e.Message);
             }
 
-            file.Close();
+            return studentsList;
+        }
 
-            return listStudents;
+        public static List<InputCase> GetDistinctStudentsCases(List<Student> studentsList)
+        {
+            var cases = new List<InputCase>();
+
+            var distinctList = studentsList
+                        .Select(m => new { m.Gender, m.Age, m.Study, m.AcademicYear })
+                        .Distinct()
+                        .ToList();
+
+            distinctList.ForEach(o => cases.Add(new InputCase(o.Gender, o.Age, o.Study, o.AcademicYear)));
+
+            return cases;
         }
     }
 }
