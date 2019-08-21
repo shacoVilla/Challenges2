@@ -19,6 +19,11 @@ namespace AnonymousPoll.Core.Output
             this.Names = new List<string>();
         }
 
+        public void AddResultCaseName(string name)
+        {
+            this.Names.Add(name);
+        }
+
         public override string ToString()
         {
             return this.Names.Any() ? $"Case #{this.CaseNumber}: {string.Join(",", this.Names)}" : $"Case #{this.CaseNumber}: None";

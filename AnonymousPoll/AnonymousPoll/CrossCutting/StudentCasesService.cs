@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AnonymousPoll.Core.Input;
+    using AnonymousPoll.Core.Output;
     using AnonymousPoll.Model;
 
     public class StudentCasesService : IStudentCasesService
@@ -31,6 +32,32 @@
             distinctList.ForEach(o => cases.Add(new StudentCase(o.Gender, o.Age, o.Study, o.AcademicYear)));
 
             return cases;
+        }
+
+        public List<IResultCase> GetResultCasesByDistinctStudentCases(List<IStudent> studentsList, List<IStudentCase> distinctCases)
+        {
+            var resultCases = new List<IResultCase>();
+
+            int caseNr = 0;
+
+            foreach (var caseStudent in distinctCases)
+            {
+                caseNr++;
+
+                var resultCase = new ResultCase(caseNr);
+
+                studentsList.ForEach(o =>
+                {
+                    if (o.BelongsToStudentCase(caseStudent))
+                    {
+                        resultCase.AddResultCaseName(o.Name);
+                    }
+                });
+
+                resultCases.Add(resultCase);
+            }
+
+            return resultCases;
         }
     }
 }

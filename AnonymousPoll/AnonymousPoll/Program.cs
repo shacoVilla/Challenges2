@@ -1,8 +1,5 @@
 ﻿namespace AnonymousPoll
 {
-    using System;
-    using System.Collections.Generic;
-    using AnonymousPoll.Core.Output;
     using AnonymousPoll.CrossCutting;
 
     public static class Program
@@ -17,26 +14,7 @@
 
             var distinctCases = studentsCasesService.GetDistinctStudentsCases(studentsList);
 
-            var resultCases = new List<IResultCase>();
-
-            int caseNr = 0;
-
-            foreach (var caseStudent in distinctCases)
-            {
-                caseNr++;
-
-                var resultCase = new ResultCase(caseNr);
-
-                studentsList.ForEach(o =>
-                {
-                    if (o.BelongsToStudentCase(caseStudent))
-                    {
-                        resultCase.Names.Add(o.Name);
-                    }
-                });
-
-                resultCases.Add(resultCase);
-            }
+            var resultCases = studentsCasesService.GetResultCasesByDistinctStudentCases(studentsList, distinctCases);
 
             OutputService.PrintResultCases(resultCases);
         }
