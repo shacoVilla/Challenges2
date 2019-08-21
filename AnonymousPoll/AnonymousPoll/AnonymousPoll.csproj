@@ -46,9 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Input\IStudentCase.cs" />
+    <Compile Include="Core\Input\StudentCase.cs" />
+    <Compile Include="Core\Output\IResultCase.cs" />
     <Compile Include="Core\Output\ResultCase.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="Core\Input\InputCase.cs" />
+    <Compile Include="CrossCutting\FileService.cs" />
+    <Compile Include="CrossCutting\IFileService.cs" />
+    <Compile Include="CrossCutting\IStudentCasesService.cs" />
+    <Compile Include="CrossCutting\OutputService.cs" />
+    <Compile Include="CrossCutting\StudentCasesService.cs" />
+    <Compile Include="Model\IStudent.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +63,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

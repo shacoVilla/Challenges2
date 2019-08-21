@@ -6,7 +6,7 @@ namespace AnonymousPoll.Model
 {
     using AnonymousPoll.Core.Input;
 
-    public class Student
+    public class Student : IStudent
     {
         public string Gender { get; set; }
 
@@ -27,7 +27,7 @@ namespace AnonymousPoll.Model
             this.AcademicYear = academicYear;
         }
 
-        public bool BelongsToStudentCase(InputCase other)
+        public bool BelongsToStudentCase(IStudentCase other)
         {
             if (this.Gender != other.Gender || this.Age != other.Age || this.Study != other.Study || this.AcademicYear != other.AcademicYear)
             {

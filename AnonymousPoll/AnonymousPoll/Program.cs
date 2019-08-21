@@ -3,16 +3,21 @@
     using System;
     using System.Collections.Generic;
     using AnonymousPoll.Core.Output;
+    using AnonymousPoll.CrossCutting;
 
     public static class Program
     {
         public static void Main(string[] args)
         {
-            var studentsList = Helper.GetStudentsFromTextFile(@"../../Data/Input/students.txt");
+            var fileService = new FileService(@"../../Data/Input/students.txt");
 
-            var distinctCases = Helper.GetDistinctStudentsCases(studentsList);
+            var studentsCasesService = new StudentCasesService(fileService);
 
-            var resultCases = new List<ResultCase>();
+            var studentsList = studentsCasesService.GetStudents();
+
+            var distinctCases = studentsCasesService.GetDistinctStudentsCases(studentsList);
+
+            var resultCases = new List<IResultCase>();
 
             int caseNr = 0;
 
@@ -22,33 +27,18 @@
 
                 var resultCase = new ResultCase(caseNr);
 
-                foreach (var student in studentsList)
+                studentsList.ForEach(o =>
                 {
-                    if (student.BelongsToStudentCase(caseStudent))
+                    if (o.BelongsToStudentCase(caseStudent))
                     {
-                        resultCase.Names.Add(student.Name);
+                        resultCase.Names.Add(o.Name);
                     }
-                }
+                });
 
                 resultCases.Add(resultCase);
             }
 
-            PrintResultCases(resultCases);
-        }
-
-        private static void PrintResultCases(List<ResultCase> resultStudentCases)
-        {
-            foreach (var outputCase in resultStudentCases)
-            {
-                if (outputCase.Names.Count == 0)
-                {
-                    Console.WriteLine("Case #" + outputCase.CaseNumber + ": NONE");
-                }
-                else
-                {
-                    Console.WriteLine(outputCase.ToString());
-                }
-            }
+            OutputService.PrintResultCases(resultCases);
         }
     }
 }

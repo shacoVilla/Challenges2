@@ -1,4 +1,4 @@
-﻿namespace AnonymousPoll
+﻿namespace AnonymousPoll.CrossCutting
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,25 @@
     using AnonymousPoll.Core.Input;
     using AnonymousPoll.Model;
 
-    public static class Helper
+    public class FileService : IFileService
     {
-        public static List<Student> GetStudentsFromTextFile(string filePath)
+        private string pathFile;
+
+        public FileService (string pathFile)
+        {
+            this.pathFile = pathFile;
+        }
+
+        public List<IStudent> GetStudentsFromTextFile()
         {
             string line;
-            List<Student> studentsList = new List<Student>();
+            List<IStudent> studentsList = new List<IStudent>();
 
             try
             {
                 // Read the file and display it line by line.
                 System.IO.StreamReader file =
-                    new System.IO.StreamReader(filePath);
+                    new System.IO.StreamReader(this.pathFile);
                 while ((line = file.ReadLine()) != null)
                 {
                     string[] words = line.Split(',');
@@ -32,20 +39,6 @@
             }
 
             return studentsList;
-        }
-
-        public static List<InputCase> GetDistinctStudentsCases(List<Student> studentsList)
-        {
-            var cases = new List<InputCase>();
-
-            var distinctList = studentsList
-                        .Select(m => new { m.Gender, m.Age, m.Study, m.AcademicYear })
-                        .Distinct()
-                        .ToList();
-
-            distinctList.ForEach(o => cases.Add(new InputCase(o.Gender, o.Age, o.Study, o.AcademicYear)));
-
-            return cases;
         }
     }
 }

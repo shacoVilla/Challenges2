@@ -5,8 +5,9 @@
 namespace AnonymousPoll.Core.Output
 {
     using System.Collections.Generic;
+    using System.Linq;
 
-    public class ResultCase
+    public class ResultCase : IResultCase
     {
         public int CaseNumber { get; set; }
 
@@ -20,7 +21,7 @@ namespace AnonymousPoll.Core.Output
 
         public override string ToString()
         {
-            return $"Case #{this.CaseNumber}: {string.Join(",", this.Names)}";
+            return this.Names.Any() ? $"Case #{this.CaseNumber}: {string.Join(",", this.Names)}" : $"Case #{this.CaseNumber}: None";
         }
     }
 }
